@@ -33,7 +33,7 @@ public class InvalidColumnindexExample {
 // IOException 
 class MyRunnable implements Runnable{
    public void run(){
-      System.out.println("in run() method"';
+      System.out.println("in run() method"');
       for(int i = 0; i < 2; i++){
          System.out.println("i=" + i + "" 
            Thread.currentThread());
@@ -110,4 +110,37 @@ public class SeriealizeEmployee {
    }
   }
 
+}
+
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+
+public class DeserializeEmployee{
+   public static void main(String[] args) {
+     InputStream fin;
+     try{
+        fin = new FileInputStream("");
+        ObjectInput oin = new ObjectInputStream(fin);
+        System.out.println("DeSerialization process");
+        Employee emp;
+        while((emp = (Employee) oin.readObject() != null)){
+           System.out.println(emp);
+        }   
+        oin.close();
+        } catch(EOFException e) {
+            System.out.println("File ended");
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e) {
+            e.printStackTrace();
+        } catch(ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        
+        System.out.println("Object DeSerializatoin");
+            
+   }
 }
